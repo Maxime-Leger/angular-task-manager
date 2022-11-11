@@ -9,6 +9,7 @@ import { Task } from './../../Task'
 })
 export class TaskItemComponent implements OnInit {
   @Output() taskDelete = new EventEmitter();
+  @Output() taskPut = new EventEmitter();
   faTimes = faTimes;
 
   @Input() task: Task = {
@@ -25,5 +26,22 @@ export class TaskItemComponent implements OnInit {
 
   taskDeleteFromTask(): void {
     this.taskDelete.emit();
+  }
+
+  onToggle(): void {
+    this.task.reminder = !this.task.reminder;
+    this.taskPut.emit();
+  }
+
+  reminderToggle(): void {
+    this.task.reminder = !this.task.reminder;
+  }
+
+  getTaskItemClass() {
+    var taskItemClass = {
+      'first': 'task',
+      'second': this.task.reminder ? 'reminder' : '',
+    };
+    return taskItemClass;
   }
 }
