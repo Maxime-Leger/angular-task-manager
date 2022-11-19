@@ -23,4 +23,8 @@ export class TasksComponent implements OnInit {
   taskPutFromTasks(task: Task) {
     this.taskService.putTask(task).subscribe();
   }
+  
+  taskAddFromTasks(task: Task) {
+    this.taskService.postTask(task).subscribe(task1 => this.tasks.push(task1));
+  }
 }
